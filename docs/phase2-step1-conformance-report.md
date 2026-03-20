@@ -1,8 +1,8 @@
 # Harness Conformance Audit Report
 
-- Generated: `2026-03-20T23:09:35`
+- Generated: `2026-03-20T23:17:27`
 - Harnesses scanned: `17`
-- Overall status counts: `PASS=1`, `WARN=14`, `FAIL=2`
+- Overall status counts: `PASS=3`, `WARN=14`, `FAIL=0`
 
 ## Per-Harness Summary
 
@@ -12,7 +12,7 @@
 | anygen | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | audacity | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | blender | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
-| comfyui | FAIL | PASS | FAIL | N/A | PASS | PASS | PASS | PASS | PASS |
+| comfyui | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
 | drawio | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | gimp | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | inkscape | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
@@ -20,7 +20,7 @@
 | libreoffice | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | mermaid | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | mubu | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
-| notebooklm | FAIL | PASS | FAIL | N/A | PASS | PASS | PASS | PASS | PASS |
+| notebooklm | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
 | obs-studio | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | ollama | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
 | shotcut | WARN | PASS | PASS | WARN | PASS | PASS | PASS | PASS | PASS |
@@ -35,8 +35,6 @@
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
 - `blender` (WARN)
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
-- `comfyui` (FAIL)
-  - REPL skin: Missing expected REPL skin at comfyui/agent-harness/cli_anything/comfyui/utils/repl_skin.py
 - `drawio` (WARN)
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
 - `gimp` (WARN)
@@ -49,8 +47,6 @@
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
 - `mermaid` (WARN)
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
-- `notebooklm` (FAIL)
-  - REPL skin: Missing expected REPL skin at notebooklm/agent-harness/cli_anything/notebooklm/utils/repl_skin.py
 - `obs-studio` (WARN)
   - REPL align: Differs from canonical cli-anything-plugin/repl_skin.py
 - `ollama` (WARN)
