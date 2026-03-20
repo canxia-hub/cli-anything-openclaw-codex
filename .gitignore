@@ -119,7 +119,12 @@ assets/gen_typing_gif.py
 !/docs/
 /docs/*
 !/docs/hub/
+!/docs/harness-conformance-audit.md
+!/docs/phase2-step1-conformance-report.md
 !/notebooklm/
 /notebooklm/*
 /notebooklm/.*
 !/notebooklm/agent-harness/
+
+!/scripts/
+!/scripts/harness_conformance_audit.py
