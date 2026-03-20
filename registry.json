@@ -28,7 +28,7 @@
       "homepage": "https://adguard.com/adguard-home/overview.html",
       "install_cmd": "pip install git+https://github.com/HKUDS/CLI-Anything.git#subdirectory=adguardhome/agent-harness",
       "entry_point": "cli-anything-adguardhome",
-      "skill_md": null,
+      "skill_md": "adguardhome/agent-harness/cli_anything/adguardhome/skills/SKILL.md",
       "category": "network",
       "contributor": "pyxl-dev",
       "contributor_url": "https://github.com/pyxl-dev"
@@ -70,7 +70,7 @@
       "homepage": "https://github.com/comfyanonymous/ComfyUI",
       "install_cmd": "pip install git+https://github.com/HKUDS/CLI-Anything.git#subdirectory=comfyui/agent-harness",
       "entry_point": "cli-anything-comfyui",
-      "skill_md": null,
+      "skill_md": "comfyui/agent-harness/cli_anything/comfyui/skills/SKILL.md",
       "category": "ai",
       "contributor": "Bortlesboat",
       "contributor_url": "https://github.com/Bortlesboat"
@@ -168,7 +168,7 @@
       "homepage": "https://mermaid.js.org",
       "install_cmd": "pip install git+https://github.com/HKUDS/CLI-Anything.git#subdirectory=mermaid/agent-harness",
       "entry_point": "cli-anything-mermaid",
-      "skill_md": null,
+      "skill_md": "mermaid/agent-harness/cli_anything/mermaid/skills/SKILL.md",
       "category": "diagrams",
       "contributor": "getmored-create",
       "contributor_url": "https://github.com/getmored-create"
