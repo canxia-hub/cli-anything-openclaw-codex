@@ -25,6 +25,14 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 
 **One Command Line**: Make any software agent-ready for OpenClaw, nanobot, Cursor, Claude Code, etc.&nbsp;&nbsp;[**中文文档**](README_CN.md) | [**日本語ドキュメント**](README_JA.md)
 
+> **Hosted fork notice**
+> This repository is a maintained hosted fork derived from [`HKUDS/CLI-Anything`](https://github.com/HKUDS/CLI-Anything).
+> It preserves upstream licensing and attribution. See [LICENSE](LICENSE), [NOTICE.md](NOTICE.md), and [DISCLAIMER.md](DISCLAIMER.md).
+>
+> **Implementation note**
+> The fork maintenance and conformance work in this hosted copy was completed using **OpenClaw orchestration + Codex execution**.
+> Other users should review and use this repository cautiously, especially before production or commercial deployment.
+
 **🌐 [CLI-Hub](https://hkuds.github.io/CLI-Anything/hub/)**: Browse & install all community CLIs in one place. Have a CLI for a new software? [Open a PR](https://github.com/HKUDS/CLI-Anything/blob/main/CONTRIBUTING.md) — the hub updates instantly.
 
 <p align="center">
@@ -963,6 +971,8 @@ If CLI-Anything helps make your software Agent-native, give us a star! ⭐
 ## 📄 License
 
 MIT License — free to use, modify, and distribute.
+
+This hosted fork retains upstream licensing and attribution. Review [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) before redistribution.
 
 ---
 
