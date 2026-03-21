@@ -6,21 +6,38 @@ import sys
 
 
 def _resolve_cli(name: str):
+    force = os.environ.get("CLI_ANYTHING_FORCE_INSTALLED", "").strip() == "1"
     path = shutil.which(name)
     if path:
+        print(f"[_resolve_cli] Using installed command: {path}")
         return [path]
+    if force:
+        raise RuntimeError(f"{name} not found in PATH. Install with: pip install -e .")
+    print(f"[_resolve_cli] Falling back to: {sys.executable} -m cli_anything.mermaid")
     return [sys.executable, "-m", "cli_anything.mermaid"]
 
 
 class TestMermaidCLI:
     CLI = _resolve_cli("cli-anything-mermaid")
 
-    def _run(self, args):
-        return subprocess.run(self.CLI + args, capture_output=True, text=True, check=True, timeout=60)
+    def _run(self, args, **kwargs):
+        run_kwargs = {
+            "capture_output": True,
+            "text": True,
+            "check": True,
+            "timeout": 60,
+        }
+        run_kwargs.update(kwargs)
+        return subprocess.run(self.CLI + args, **run_kwargs)
 
     def test_help(self):
         result = self._run(["--help"])
         assert "Mermaid" in result.stdout
+
+    def test_repl_quit_with_piped_stdin(self):
+        result = self._run([], input="quit\n")
+        assert "cli-anything" in result.stdout
+        assert "Goodbye" in result.stdout
 
     def test_project_new_json(self, tmp_path):
         path = str(tmp_path / "demo.mermaid.json")

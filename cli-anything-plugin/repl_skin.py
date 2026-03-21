@@ -441,13 +441,13 @@ class ReplSkin:
         """Create a prompt_toolkit PromptSession with skin styling.
 
         Returns:
-            A configured PromptSession, or None if prompt_toolkit unavailable.
+            A configured PromptSession, or None if prompt_toolkit is unavailable
+            or the current stdout/stderr stream is not an interactive console.
         """
         try:
             from prompt_toolkit import PromptSession
             from prompt_toolkit.history import FileHistory
             from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
-            from prompt_toolkit.formatted_text import FormattedText
 
             style = self.get_prompt_style()
 
@@ -459,6 +459,10 @@ class ReplSkin:
             )
             return session
         except ImportError:
+            return None
+        except Exception:
+            # Non-interactive shells / piped stdin on Windows can fail while
+            # prompt_toolkit probes the console buffer. Fall back to plain input().
             return None
 
     def get_input(self, pt_session, project_name: str = "",
