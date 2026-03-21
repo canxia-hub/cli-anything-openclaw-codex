@@ -151,6 +151,8 @@ def workflow_validate(path):
     wf = workflow_mod.load_workflow(path)
     result = workflow_mod.validate_workflow(wf)
     output(result, f"Validation: {path}")
+    if _json_output:
+        return
     if result["valid"]:
         click.echo("  Workflow is valid.")
     else:

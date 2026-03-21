@@ -40,6 +40,13 @@ def _resolve_cli(name: str) -> list[str]:
     return [sys.executable, "-m", module]
 
 
+def _require_docker() -> str:
+    docker_path = shutil.which("docker")
+    if not docker_path:
+        pytest.skip("Docker not installed; skipping AdGuardHome Docker E2E tests")
+    return docker_path
+
+
 # ---------------------------------------------------------------------------
 # Docker fixture
 # ---------------------------------------------------------------------------
@@ -84,13 +91,14 @@ def agh_docker():
     """Start AdGuardHome in Docker for E2E tests, configure via install API."""
     username = "admin"
     password = "admin123"
+    docker = _require_docker()
 
     # Stop any existing container
-    subprocess.run(["docker", "rm", "-f", AGH_CONTAINER], capture_output=True)
+    subprocess.run([docker, "rm", "-f", AGH_CONTAINER], capture_output=True)
 
     # Start AdGuardHome container (no config mount - will use install API)
     result = subprocess.run([
-        "docker", "run", "-d",
+        docker, "run", "-d",
         "--name", AGH_CONTAINER,
         "-p", f"{AGH_TEST_PORT}:3000",
         "--cap-add=NET_ADMIN",
@@ -115,17 +123,17 @@ def agh_docker():
         time.sleep(1)
 
     if not setup_ready:
-        subprocess.run(["docker", "rm", "-f", AGH_CONTAINER], capture_output=True)
+        subprocess.run([docker, "rm", "-f", AGH_CONTAINER], capture_output=True)
         pytest.skip("AdGuardHome setup wizard not reachable in time")
 
     # Run setup wizard
     if not _configure_adguardhome(AGH_TEST_PORT, username, password):
-        subprocess.run(["docker", "rm", "-f", AGH_CONTAINER], capture_output=True)
+        subprocess.run([docker, "rm", "-f", AGH_CONTAINER], capture_output=True)
         pytest.skip("Could not configure AdGuardHome via install API")
 
     # Wait for configured instance to be ready
     if not _wait_for_adguardhome(AGH_TEST_PORT, timeout=20):
-        subprocess.run(["docker", "rm", "-f", AGH_CONTAINER], capture_output=True)
+        subprocess.run([docker, "rm", "-f", AGH_CONTAINER], capture_output=True)
         pytest.skip("AdGuardHome not ready after configuration")
 
     print(f"\n  AdGuardHome running at localhost:{AGH_TEST_PORT} (admin/admin123)")
@@ -133,7 +141,7 @@ def agh_docker():
     yield {"host": AGH_TEST_HOST, "port": AGH_TEST_PORT,
            "username": username, "password": password}
 
-    subprocess.run(["docker", "rm", "-f", AGH_CONTAINER], capture_output=True)
+    subprocess.run([docker, "rm", "-f", AGH_CONTAINER], capture_output=True)
 
 
 # ---------------------------------------------------------------------------

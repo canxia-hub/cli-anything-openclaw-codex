@@ -16,6 +16,9 @@ from cli_anything.notebooklm.utils.notebooklm_backend import (
 )
 
 
+PACKAGE_ROOT = Path(__file__).resolve().parents[1]
+
+
 class TestBackendDiscovery:
     def test_require_notebooklm_returns_path(self):
         with patch("cli_anything.notebooklm.utils.notebooklm_backend.shutil.which", return_value="/usr/local/bin/notebooklm"):
@@ -90,23 +93,23 @@ class TestSession:
 
 class TestPackagingFixtures:
     def test_acknowledgements_reference_external_projects(self):
-        readme = Path("cli_anything/notebooklm/README.md").read_text(encoding="utf-8")
+        readme = (PACKAGE_ROOT / "README.md").read_text(encoding="utf-8")
         assert "CLI-Anything" in readme
         assert "notebooklm-py" in readme
 
     def test_readme_documents_install_test_and_safety_sections(self):
-        readme = Path("cli_anything/notebooklm/README.md").read_text(encoding="utf-8")
+        readme = (PACKAGE_ROOT / "README.md").read_text(encoding="utf-8")
         assert "## Install" in readme
         assert "## Run Tests" in readme
         assert "## Safety Notes" in readme
         assert "Google NotebookLM" in readme
 
     def test_skill_file_contains_usage_and_boundary_guidance(self):
-        skill = Path("cli_anything/notebooklm/skills/SKILL.md").read_text(encoding="utf-8")
+        skill = (PACKAGE_ROOT / "skills" / "SKILL.md").read_text(encoding="utf-8")
         assert "## Installation" in skill
         assert "## Usage" in skill
         assert "unofficial" in skill.lower()
         assert "not affiliated with Google" in skill
 
     def test_skill_file_exists(self):
-        assert Path("cli_anything/notebooklm/skills/SKILL.md").is_file()
+        assert (PACKAGE_ROOT / "skills" / "SKILL.md").is_file()
