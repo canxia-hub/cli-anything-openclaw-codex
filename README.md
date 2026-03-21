@@ -33,6 +33,21 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 > The fork maintenance and conformance work in this hosted copy was completed using **OpenClaw orchestration + Codex execution**.
 > Other users should review and use this repository cautiously, especially before production or commercial deployment.
 
+> **Hosted fork validation status (2026-03-21)**
+> This hosted fork completed a fresh Windows-host validation pass before publication. Confirmed on-host in this release cycle:
+> - Repository-wide conformance audit: **17/17 PASS**
+> - Skill path / package-data regression tests: **51 passed**
+> - Targeted harness retests: **Mermaid 13 passed**, **AdGuardHome 31 passed / 5 skipped**, **ComfyUI 70 passed**, **NotebookLM 21 passed**
+> - Windows Codex skill installer smoke test: **PASS**
+> - Mermaid end-to-end plugin workflow (installed command + JSON + render + SKILL generation): **PASS**
+>
+> **Not yet completed in this release cycle:**
+> - AdGuardHome Docker-backed E2E on a host with Docker installed
+> - `cli-anything-plugin/scripts/setup-cli-anything.sh` full end-to-end execution in a real Bash / Git Bash / WSL environment
+> - A fresh full `pytest` rerun for every harness on this exact Windows host (the broad repository check used conformance audit + targeted high-risk reruns instead)
+>
+> See [`docs/testing/final-test-report-2026-03-21.md`](docs/testing/final-test-report-2026-03-21.md) for the consolidated report.
+
 **🌐 [CLI-Hub](https://hkuds.github.io/CLI-Anything/hub/)**: Browse & install all community CLIs in one place. Have a CLI for a new software? [Open a PR](https://github.com/HKUDS/CLI-Anything/blob/main/CONTRIBUTING.md) — the hub updates instantly.
 
 <p align="center">
@@ -48,6 +63,8 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 ## 📰 News
 
 > Thanks to all invaluable efforts from the community! More updates continuously on the way everyday..
+
+- **2026-03-21** ✅ Hosted fork release validation completed for `canxia-hub/cli-anything-openclaw-codex`. This release added a consolidated Windows-host test report, hardened Mermaid renderer retries and REPL fallback behavior, stabilized AdGuardHome / ComfyUI / NotebookLM regression coverage, and published the tested branch to GitHub. Remaining uncompleted tests are documented explicitly in the hosted-fork validation note and final report.
 
 - **2026-03-17** 🌐 Launched the **[CLI-Hub](https://hkuds.github.io/CLI-Anything/hub/)** — a central registry where you can browse, search, and install any CLI with a single `pip` command. Contributors can add new CLIs or update existing ones by simply opening a PR with a `registry.json` entry. The hub updates automatically on merge.
 
