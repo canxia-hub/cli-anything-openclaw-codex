@@ -2,6 +2,8 @@ import json
 import os
 import tempfile
 
+import pytest
+
 from cli_anything.mermaid.core import export as export_mod
 from cli_anything.mermaid.core import project as project_mod
 from cli_anything.mermaid.core.session import Session, default_state
@@ -53,3 +55,46 @@ def test_share_payload():
     result = export_mod.share(session, mode="edit")
     assert result["mode"] == "edit"
     assert result["url"].startswith("https://mermaid.live/edit#")
+
+
+def test_fetch_render_bytes_retries_then_succeeds(monkeypatch):
+    attempts = {"count": 0}
+
+    class DummyResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, tb):
+            return False
+
+        def read(self):
+            return b"<svg/>"
+
+    def fake_urlopen(req, timeout):
+        attempts["count"] += 1
+        if attempts["count"] == 1:
+            raise TimeoutError("temporary timeout")
+        return DummyResponse()
+
+    monkeypatch.setattr(mermaid_backend.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(mermaid_backend.time, "sleep", lambda *_args, **_kwargs: None)
+
+    data = mermaid_backend._fetch_render_bytes("https://example.test/render", timeout=0.01, retries=2)
+    assert data == b"<svg/>"
+    assert attempts["count"] == 2
+
+
+def test_fetch_render_bytes_raises_clear_error_after_retries(monkeypatch):
+    attempts = {"count": 0}
+
+    def fake_urlopen(req, timeout):
+        attempts["count"] += 1
+        raise TimeoutError("still timing out")
+
+    monkeypatch.setattr(mermaid_backend.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(mermaid_backend.time, "sleep", lambda *_args, **_kwargs: None)
+
+    with pytest.raises(RuntimeError, match="Mermaid renderer request failed after 2 attempts"):
+        mermaid_backend._fetch_render_bytes("https://example.test/render", timeout=0.01, retries=2)
+
+    assert attempts["count"] == 2
