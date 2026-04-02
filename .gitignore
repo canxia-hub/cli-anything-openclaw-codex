@@ -40,6 +40,21 @@
 !/mermaid/
 !/adguardhome/
 !/ollama/
+!/browser/
+!/clibrowser/
+!/cloudcompare/
+!/freecad/
+!/intelwatch/
+!/iterm2/
+!/krita/
+!/musescore/
+!/novita/
+!/renderdoc/
+!/rms/
+!/sketch/
+!/slay_the_spire_ii/
+!/videocaptioner/
+!/zotero/
 
 # Step 5: Inside each software dir, ignore everything (including dotfiles)
 /gimp/*
@@ -72,6 +87,36 @@
 /adguardhome/.*
 /ollama/*
 /ollama/.*
+/browser/*
+/browser/.*
+/clibrowser/*
+/clibrowser/.*
+/cloudcompare/*
+/cloudcompare/.*
+/freecad/*
+/freecad/.*
+/intelwatch/*
+/intelwatch/.*
+/iterm2/*
+/iterm2/.*
+/krita/*
+/krita/.*
+/musescore/*
+/musescore/.*
+/novita/*
+/novita/.*
+/renderdoc/*
+/renderdoc/.*
+/rms/*
+/rms/.*
+/sketch/*
+/sketch/.*
+/slay_the_spire_ii/*
+/slay_the_spire_ii/.*
+/videocaptioner/*
+/videocaptioner/.*
+/zotero/*
+/zotero/.*
 
 # Step 6: ...except agent-harness/
 !/gimp/agent-harness/
@@ -89,6 +134,21 @@
 !/mermaid/agent-harness/
 !/adguardhome/agent-harness/
 !/ollama/agent-harness/
+!/browser/agent-harness/
+!/clibrowser/agent-harness/
+!/cloudcompare/agent-harness/
+!/freecad/agent-harness/
+!/intelwatch/agent-harness/
+!/iterm2/agent-harness/
+!/krita/agent-harness/
+!/musescore/agent-harness/
+!/novita/agent-harness/
+!/renderdoc/agent-harness/
+!/rms/agent-harness/
+!/sketch/agent-harness/
+!/slay_the_spire_ii/agent-harness/
+!/videocaptioner/agent-harness/
+!/zotero/agent-harness/
 
 # Step 7: Ignore build artifacts within allowed dirs
 **/__pycache__/
